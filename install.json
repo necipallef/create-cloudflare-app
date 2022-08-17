@@ -14,10 +14,10 @@
   },
   "dns": [
     {
-      "type": "TXT",
-      "content": "Managed TXT Record",
-      "name": "Created by create-cloudflare-app",
-      "ttl": 120
+      "type": "CNAME",
+      "content": "{{options.domain}}",
+      "name": "{{options.subdomain}}",
+      "proxied": true
     }
   ],
   "preview": {
@@ -30,24 +30,21 @@
   },
   "options": {
     "properties": {
-      "location": {
-        "title": "Message Location",
-        "description": "Where should the message appear?",
-        "order": 0,
-        "type": "object",
-        "format": "element",
-        "default": {
-          "selector": "body",
-          "method": "prepend"
-        }
-      },
-      "message": {
-        "title": "Message",
-        "description": "A short example message.",
-        "type": "string",
-        "format": "richtext",
+      "subdomain": {
         "order": 1,
-        "default": "<h1>Welcome to Cloudflare Apps!</h1><p>Download this app every time you want to make a new project.</p><p>This app renders a message to the user's website and sets a TXT DNS record with a value of 'Hello DNS'."
+        "type": "string",
+        "title": "CNAME Record Subdomain",
+        "description": "The subdomain of your DNS record",
+        "placeholder": "e.g. fp",
+        "required": true
+      },
+      "domain": {
+        "order": 2,
+        "type": "string",
+        "title": "Your domain",
+        "description": "Your website domain",
+        "placeholder": "e.g. [your-domain].com",
+        "required": true
       }
     }
   }
